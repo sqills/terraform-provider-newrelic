@@ -103,3 +103,19 @@ func stringInSlice(slice []string, str string) bool {
 
 	return false
 }
+
+func removeIds(ids []int, remove []int) []int {
+	removeSet := make(map[int]bool, len(remove))
+	for _, id := range remove {
+		removeSet[id] = true
+	}
+
+	updatedIds := make([]int, 0, len(ids)-len(remove))
+	for _, id := range ids {
+		if !removeSet[id] {
+			updatedIds = append(updatedIds, id)
+		}
+	}
+
+	return updatedIds
+}
